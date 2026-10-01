@@ -1,7 +1,12 @@
+from random import randint
+from ataques import Golpe
+
+
 class Personagem:
     """Guarda o estado do personagem e controla sua movimentação."""
 
     def __init__(self, nome, x, y, vida=100):
+        self.ataques = []
         self.nome = nome
         self.x = x
         self.y = y
@@ -42,3 +47,18 @@ class Personagem:
         dano_real = min(dano, self._vida)
         self._vida -= dano_real
         return dano_real
+
+    def atacar(self, alvo, indice=0, sortear=randint):
+        if not self.esta_vivo() or not alvo.esta_vivo():
+            raise ValueError("Atacante e alvo precisam estar vivos.")
+        if not isinstance(indice, int) or isinstance(indice, bool) or not 0 <= indice < len(self.ataques):
+            raise ValueError("Escolha um ataque disponível.")
+        return self.ataques[indice].executar(self, alvo, sortear)
+
+
+class Guerreiro(Personagem):
+    def __init__(self, nome="Arthur", x=2, y=2):
+        super().__init__(nome, x, y, 140)
+        self.ataques = [Golpe("Corte rapido", 12, 95),
+                        Golpe("Espadada", 24, 80),
+                        Golpe("Golpe pesado", 40, 55)]
