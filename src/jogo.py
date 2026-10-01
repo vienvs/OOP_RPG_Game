@@ -1,3 +1,4 @@
+from itens import PocaoVida
 from inimigos import Inimigo
 from mapa import Mapa
 from personagens import Guerreiro, Mago
@@ -7,6 +8,7 @@ class Jogo:
     def __init__(self):
         self.mapa = Mapa()
         self.jogador = Guerreiro()
+        self.jogador.inventario = [PocaoVida() for _ in range(3)]
         self.alvo = Inimigo()
         self.mensagens = ["Treino: 1, 2, 3 atacam. R reinicia."]
 
@@ -35,3 +37,10 @@ class Jogo:
     def escolher_classe(self, classe):
         self.reiniciar()
         self.jogador = classe()
+        self.jogador.inventario = [PocaoVida() for _ in range(3)]
+
+    def usar_item(self):
+        try:
+            self.registrar(self.jogador.usar_item())
+        except ValueError as erro:
+            self.registrar(str(erro))

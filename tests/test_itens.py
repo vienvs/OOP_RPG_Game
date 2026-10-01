@@ -17,3 +17,16 @@ class TestPocao(unittest.TestCase):
         p.receber_dano(140)
         with self.assertRaises(ValueError):
             PocaoVida().usar(p)
+
+    def test_consumo_so_apos_sucesso(self):
+        p = Guerreiro()
+        p.inventario = [PocaoVida()]
+        with self.assertRaises(ValueError):
+            p.usar_item()
+        self.assertEqual(len(p.inventario), 1)
+        p.receber_dano(60)
+        p.usar_item()
+        self.assertEqual(p.vida, 130)
+        self.assertEqual(p.inventario, [])
+        with self.assertRaises(ValueError):
+            p.usar_item()
