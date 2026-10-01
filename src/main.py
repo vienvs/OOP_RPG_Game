@@ -40,6 +40,8 @@ def processar_eventos(jogador, mapa):
         if evento.type == pygame.KEYDOWN:
             if evento.key == pygame.K_ESCAPE:
                 return False
+            if evento.key == pygame.K_h:
+                jogador.receber_dano(10)
             if evento.key in MOVIMENTOS:
                 dx, dy = MOVIMENTOS[evento.key]
                 jogador.mover(dx, dy, mapa)
@@ -90,7 +92,7 @@ def desenhar(tela, fonte_mapa, fonte_ui, jogador, mapa):
         texto = fonte_ui.render(linha, True, TEXTO)
         tela.blit(texto, (732, 96 + indice * 28))
 
-    dica = fonte_ui.render("Explore o mapa. Cada tecla move uma casa.", True, TEXTO)
+    dica = fonte_ui.render("H: demonstrar 10 de dano. WASD: mover.", True, TEXTO)
     tela.blit(dica, (ORIGEM_X, 530))
     pygame.display.flip()
 

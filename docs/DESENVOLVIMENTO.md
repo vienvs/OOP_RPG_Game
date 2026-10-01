@@ -7,3 +7,5 @@ Etapa 0 prepara src/main.py, mapa, personagem e testes iniciais. Em seguida, as 
 As ações 13 e 14 ampliam as suítes; testes básicos acompanham cada funcionalidade desde o início, conforme o roteiro mais recente.
 
 Exceção autorizada pelo proprietário: trabalho individual, sem revisor independente nem autoaprovação. Integração após verificação automatizada.
+
+- Etapa 1: implementação e testes registrados no PR correspondente à issue #1.
