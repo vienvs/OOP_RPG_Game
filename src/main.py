@@ -2,7 +2,7 @@ import os
 import sys
 import pygame
 from jogo import Jogo
-from personagens import Guerreiro, Mago
+from personagens import Guerreiro, Mago, Arqueiro
 from interface import desenhar
 
 MOVIMENTOS = {pygame.K_w: (0, -1), pygame.K_UP: (0, -1),
@@ -27,6 +27,8 @@ def processar_eventos(jogo):
                 jogo.escolher_classe(Guerreiro)
             elif tecla == pygame.K_F2:
                 jogo.escolher_classe(Mago)
+            elif tecla == pygame.K_F3:
+                jogo.escolher_classe(Arqueiro)
             elif tecla == pygame.K_p:
                 jogo.usar_item()
             elif tecla == pygame.K_r:
