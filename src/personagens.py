@@ -5,8 +5,10 @@ class Personagem:
         self.nome = nome
         self.x = x
         self.y = y
-        self.vida_maxima = vida
-        self.vida = vida
+        if not isinstance(vida, int) or isinstance(vida, bool) or vida <= 0:
+            raise ValueError("A vida máxima deve ser um inteiro positivo.")
+        self._vida_maxima = vida
+        self._vida = vida
 
     def mover(self, dx, dy, mapa):
         # Uma ação permite somente um passo horizontal ou vertical.
@@ -25,3 +27,18 @@ class Personagem:
 
     def esta_vivo(self):
         return self.vida > 0
+
+    @property
+    def vida(self):
+        return self._vida
+
+    @property
+    def vida_maxima(self):
+        return self._vida_maxima
+
+    def receber_dano(self, dano):
+        if not isinstance(dano, int) or isinstance(dano, bool) or dano < 0:
+            raise ValueError("O dano deve ser um inteiro não negativo.")
+        dano_real = min(dano, self._vida)
+        self._vida -= dano_real
+        return dano_real
