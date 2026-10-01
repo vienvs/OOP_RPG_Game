@@ -2,6 +2,7 @@ import os
 import sys
 import pygame
 from jogo import Jogo
+from personagens import Guerreiro, Mago
 from interface import desenhar
 
 MOVIMENTOS = {pygame.K_w: (0, -1), pygame.K_UP: (0, -1),
@@ -22,6 +23,10 @@ def processar_eventos(jogo):
                 jogo.mover(*MOVIMENTOS[tecla])
             elif tecla in (pygame.K_1, pygame.K_2, pygame.K_3):
                 jogo.atacar(tecla - pygame.K_1)
+            elif tecla == pygame.K_F1:
+                jogo.escolher_classe(Guerreiro)
+            elif tecla == pygame.K_F2:
+                jogo.escolher_classe(Mago)
             elif tecla == pygame.K_e:
                 jogo.demonstrar_inimigo()
             elif tecla == pygame.K_r:

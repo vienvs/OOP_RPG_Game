@@ -62,3 +62,11 @@ class Guerreiro(Personagem):
         self.ataques = [Golpe("Corte rapido", 12, 95),
                         Golpe("Espadada", 24, 80),
                         Golpe("Golpe pesado", 40, 55)]
+
+
+class Mago(Personagem):
+    def __init__(self, nome="Merlin", x=2, y=2):
+        super().__init__(nome, x, y, 110)
+        self.ataques = [Golpe("Cajado", 12, 95),
+                        Golpe("Raio simples", 22, 85),
+                        Golpe("Orbe", 32, 65)]
