@@ -1,6 +1,6 @@
 from inimigos import Inimigo
 from mapa import Mapa
-from personagens import Guerreiro, Personagem
+from personagens import Guerreiro, Mago
 
 
 class Jogo:
@@ -31,3 +31,7 @@ class Jogo:
             self.registrar(self.alvo.atacar(self.jogador))
         except ValueError as erro:
             self.registrar(str(erro))
+
+    def escolher_classe(self, classe):
+        self.reiniciar()
+        self.jogador = classe()
