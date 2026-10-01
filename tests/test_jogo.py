@@ -63,3 +63,25 @@ class TestExploracao(unittest.TestCase):
         jogo.verificar_resultado()
         self.assertEqual(jogo.jogador.vida, 80)
         self.assertEqual(jogo.jogador.mana, 40)
+
+    def test_chefe_bloqueado_ate_derrotar_guardas(self):
+        from inimigos import Chefe
+        jogo = Jogo()
+        chefe = next(i for i in jogo.inimigos if isinstance(i, Chefe))
+        jogo.iniciar_batalha(chefe)
+        self.assertEqual(jogo.estado, "mapa")
+        jogo.inimigos = [chefe]
+        jogo.iniciar_batalha(chefe)
+        self.assertEqual(jogo.estado, "batalha")
+        chefe.receber_dano(chefe.vida)
+        jogo.verificar_resultado()
+        self.assertEqual(jogo.estado, "vitoria")
+
+    def test_chefe_protegido_nao_paralisa_os_guardas(self):
+        jogo = Jogo()
+        jogo.jogador.x, jogo.jogador.y = 20, 12
+        guarda = jogo.inimigos[0]
+        antes = guarda.x, guarda.y
+        jogo.mover(1, 0)
+        self.assertEqual(jogo.estado, "mapa")
+        self.assertNotEqual((guarda.x, guarda.y), antes)
