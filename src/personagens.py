@@ -1,5 +1,5 @@
 from random import randint
-from ataques import Golpe
+from ataques import Golpe, Magia
 
 
 class Personagem:
@@ -67,6 +67,18 @@ class Guerreiro(Personagem):
 class Mago(Personagem):
     def __init__(self, nome="Merlin", x=2, y=2):
         super().__init__(nome, x, y, 110)
+        self._mana = 60
         self.ataques = [Golpe("Cajado", 12, 95),
-                        Golpe("Raio simples", 22, 85),
-                        Golpe("Orbe", 32, 65)]
+                        Magia("Raio", 30, 90, 8),
+                        Magia("Tempestade", 45, 70, 14)]
+
+    @property
+    def mana(self):
+        return self._mana
+
+    def gastar_mana(self, custo):
+        if not isinstance(custo, int) or isinstance(custo, bool) or custo < 0:
+            raise ValueError("Custo de mana inválido.")
+        if custo > self._mana:
+            raise ValueError("Mana insuficiente. Use o cajado.")
+        self._mana -= custo

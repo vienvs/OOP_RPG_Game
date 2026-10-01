@@ -24,6 +24,8 @@ def desenhar(tela, fonte, jogo):
     painel = [type(p).__name__, p.nome, f"Vida {p.vida}/{p.vida_maxima}",
               "", jogo.alvo.nome, f"Vida {jogo.alvo.vida}/{jogo.alvo.vida_maxima}",
               "", "WASD / setas: mover", "1-3: atacar; E: inimigo", "F1 Guerreiro / F2 Mago", "R: reiniciar", "ESC: sair"]
+    if hasattr(p, "mana"):
+        painel.insert(3, f"Mana {p.mana}/60")
     for i, linha in enumerate(painel):
         texto(tela, fonte, linha, 700, 70 + i * 27)
     for i, ataque in enumerate(p.ataques):

@@ -25,3 +25,18 @@ class Golpe(Ataque):
             return f"{atacante.nome} errou {self.nome}."
         dano = alvo.receber_dano(self.dano)
         return f"{atacante.nome}: {self.nome} causou {dano} de dano."
+
+
+class Magia(Golpe):
+    def __init__(self, nome, dano, precisao, custo):
+        super().__init__(nome, dano, precisao)
+        if not isinstance(custo, int) or isinstance(custo, bool) or custo <= 0:
+            raise ValueError("Custo deve ser um inteiro positivo.")
+        self.custo = custo
+
+    def executar(self, atacante, alvo, sortear):
+        atacante.gastar_mana(self.custo)
+        return super().executar(atacante, alvo, sortear)
+
+    def __str__(self):
+        return super().__str__() + f" / {self.custo} mana"
