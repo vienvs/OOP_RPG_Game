@@ -1,5 +1,5 @@
 from batalha import Batalha
-from inimigos import Inimigo, Orc
+from inimigos import Inimigo, Orc, Chefe
 from itens import PocaoVida
 from mapa import Mapa
 from personagens import Guerreiro
@@ -10,7 +10,7 @@ class Jogo:
         self.mapa = Mapa()
         self.jogador = classe()
         self.jogador.inventario = [PocaoVida() for _ in range(3)]
-        self.inimigos = [Inimigo(x=10, y=2), Orc(x=17, y=11)]
+        self.inimigos = [Inimigo(x=10, y=2), Orc(x=17, y=11), Chefe()]
         self.batalha = None
         self.estado = "mapa"
         self.mensagens = ["Explore. Inimigos se aproximam a cada passo."]
@@ -23,6 +23,9 @@ class Jogo:
         return abs(self.jogador.x - inimigo.x) + abs(self.jogador.y - inimigo.y) == 1
 
     def iniciar_batalha(self, inimigo):
+        if self.chefe_bloqueado(inimigo):
+            self.registrar("Derrote G e O antes de enfrentar o guardião B.")
+            return
         self.batalha = Batalha(self.jogador, inimigo)
         self.estado = "batalha"
         self.registrar(f"{inimigo.nome} encontrou você. Escolha 1, 2, 3 ou P.")
@@ -38,14 +41,16 @@ class Jogo:
         if not self.jogador.mover(dx, dy, self.mapa):
             return
         for inimigo in self.inimigos:
-            if self.adjacente(inimigo):
+            if self.adjacente(inimigo) and not self.chefe_bloqueado(inimigo):
                 self.iniciar_batalha(inimigo)
                 return
         for inimigo in self.inimigos:
+            if self.chefe_bloqueado(inimigo):
+                continue
             ocupadas = {(outro.x, outro.y) for outro in self.inimigos if outro is not inimigo}
             inimigo.x, inimigo.y = self.mapa.proximo_passo(
                 (inimigo.x, inimigo.y), (self.jogador.x, self.jogador.y), ocupadas)
-            if self.adjacente(inimigo):
+            if self.adjacente(inimigo) and not self.chefe_bloqueado(inimigo):
                 self.iniciar_batalha(inimigo)
                 return
 
@@ -87,10 +92,13 @@ class Jogo:
         self.batalha = None
         self.estado = "mapa" if self.inimigos else "vitoria"
         if self.estado == "vitoria":
-            self.registrar("Área livre! Você venceu. R inicia outra partida.")
+            self.registrar("Torre libertada! Você venceu. R inicia outra partida.")
 
     def reiniciar(self):
         self.__init__(type(self.jogador))
 
     def escolher_classe(self, classe):
         self.__init__(classe)
+
+    def chefe_bloqueado(self, inimigo):
+        return isinstance(inimigo, Chefe) and len(self.inimigos) > 1

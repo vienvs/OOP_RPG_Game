@@ -18,3 +18,12 @@ class TestInimigo(unittest.TestCase):
         self.assertEqual(p.vida, 125)
         self.assertEqual(orc.vida, 73)
         self.assertEqual(orc.simbolo, "O")
+
+    def test_chefe_entra_em_furia_abaixo_de_meia_vida(self):
+        from inimigos import Chefe
+        chefe, p = Chefe(), Guerreiro()
+        chefe.atacar(p, sortear=Mock(return_value=1))
+        self.assertEqual(p.vida, 122)
+        chefe.receber_dano(80)
+        chefe.atacar(p, sortear=Mock(return_value=1))
+        self.assertEqual(p.vida, 95)
