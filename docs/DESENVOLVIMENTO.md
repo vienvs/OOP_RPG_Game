@@ -31,3 +31,5 @@ Exceção autorizada pelo proprietário: trabalho individual, sem revisor indepe
 - Etapa 11: implementação e testes registrados no PR correspondente à issue #11.
 
 - Etapa 12: implementação e testes registrados no PR correspondente à issue #12.
+
+- Etapa 13: implementação e testes registrados no PR correspondente à issue #13.
