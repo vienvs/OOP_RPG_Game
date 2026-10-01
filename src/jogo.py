@@ -72,9 +72,22 @@ class Jogo:
         self.verificar_resultado()
 
     def verificar_resultado(self):
-        if self.batalha.finalizada:
-            self.estado = "encerrado"
-            self.registrar("Combate encerrado. R inicia outro jogo.")
+        if not self.batalha.finalizada:
+            return
+        if not self.jogador.esta_vivo():
+            self.estado = "derrota"
+            self.registrar("Você foi derrotado. R tenta novamente.")
+            return
+        inimigo = self.batalha.inimigo
+        self.inimigos.remove(inimigo)
+        self.jogador.inventario.append(PocaoVida())
+        self.jogador.descansar()
+        self.registrar(f"Vitória sobre {inimigo.nome}! Recebeu uma poção.")
+        self.registrar("Descanso: até +20 de vida e, para Mago, +30 de mana.")
+        self.batalha = None
+        self.estado = "mapa" if self.inimigos else "vitoria"
+        if self.estado == "vitoria":
+            self.registrar("Área livre! Você venceu. R inicia outra partida.")
 
     def reiniciar(self):
         self.__init__(type(self.jogador))
