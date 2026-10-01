@@ -48,6 +48,17 @@ class Personagem:
         self._vida -= dano_real
         return dano_real
 
+    def curar(self, quantidade):
+        if not isinstance(quantidade, int) or isinstance(quantidade, bool) or quantidade <= 0:
+            raise ValueError("Cura deve ser um inteiro positivo.")
+        if not self.esta_vivo():
+            raise ValueError("Poção não ressuscita personagens.")
+        recuperado = min(quantidade, self.vida_maxima - self.vida)
+        if recuperado == 0:
+            raise ValueError("Vida já está cheia.")
+        self._vida += recuperado
+        return recuperado
+
     def atacar(self, alvo, indice=0, sortear=randint):
         if not self.esta_vivo() or not alvo.esta_vivo():
             raise ValueError("Atacante e alvo precisam estar vivos.")
