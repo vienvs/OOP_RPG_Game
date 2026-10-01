@@ -25,3 +25,5 @@ Exceção autorizada pelo proprietário: trabalho individual, sem revisor indepe
 - Etapa 8: implementação e testes registrados no PR correspondente à issue #8.
 
 - Etapa 9: implementação e testes registrados no PR correspondente à issue #9.
+
+- Etapa 10: implementação e testes registrados no PR correspondente à issue #10.

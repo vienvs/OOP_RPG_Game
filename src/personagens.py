@@ -110,3 +110,11 @@ class Mago(Personagem):
         if custo > self._mana:
             raise ValueError("Mana insuficiente. Use o cajado.")
         self._mana -= custo
+
+
+class Arqueiro(Personagem):
+    def __init__(self, nome="Robin", x=2, y=2):
+        super().__init__(nome, x, y, 120)
+        self.ataques = [Golpe("Tiro rapido", 16, 95),
+                        Golpe("Tiro preciso", 25, 85),
+                        Golpe("Flecha pesada", 38, 65)]
