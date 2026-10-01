@@ -56,6 +56,11 @@ class Personagem:
         self.inventario.pop(indice)
         return mensagem
 
+    def descansar(self):
+        if not self.esta_vivo():
+            raise ValueError("Personagens derrotados não podem descansar.")
+        self._vida = min(self.vida_maxima, self.vida + 20)
+
     def curar(self, quantidade):
         if not isinstance(quantidade, int) or isinstance(quantidade, bool) or quantidade <= 0:
             raise ValueError("Cura deve ser um inteiro positivo.")
@@ -94,6 +99,10 @@ class Mago(Personagem):
     @property
     def mana(self):
         return self._mana
+
+    def descansar(self):
+        super().descansar()
+        self._mana = min(60, self.mana + 30)
 
     def gastar_mana(self, custo):
         if not isinstance(custo, int) or isinstance(custo, bool) or custo < 0:
