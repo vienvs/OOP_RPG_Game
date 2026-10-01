@@ -23,7 +23,7 @@ O repositório inicial continha RPG_Game/main.py vazio, sem testes. Foi executad
 | 12 | [#12](https://github.com/vienvs/OOP_RPG_Game/issues/12) | [#29](https://github.com/vienvs/OOP_RPG_Game/pull/29) | Criar chefe final |
 | 13 | [#13](https://github.com/vienvs/OOP_RPG_Game/issues/13) | [#30](https://github.com/vienvs/OOP_RPG_Game/pull/30) | Criar testes para Personagem |
 | 14 | [#14](https://github.com/vienvs/OOP_RPG_Game/issues/14) | [#31](https://github.com/vienvs/OOP_RPG_Game/pull/31) | Criar testes para Batalha |
-| 15 | [#15](https://github.com/vienvs/OOP_RPG_Game/issues/15) | [localizar PR da etapa](https://github.com/vienvs/OOP_RPG_Game/pulls?q=is%3Apr+%22Etapa+15%22) | Melhorar documentação e gerar executável |
+| 15 | [#15](https://github.com/vienvs/OOP_RPG_Game/issues/15) | [#32](https://github.com/vienvs/OOP_RPG_Game/pull/32) | Melhorar documentação e gerar executável |
 
 ## Estudar versões anteriores
 
