@@ -9,3 +9,5 @@ As ações 13 e 14 ampliam as suítes; testes básicos acompanham cada funcional
 Exceção autorizada pelo proprietário: trabalho individual, sem revisor independente nem autoaprovação. Integração após verificação automatizada.
 
 - Etapa 1: implementação e testes registrados no PR correspondente à issue #1.
+
+- Etapa 2: implementação e testes registrados no PR correspondente à issue #2.
