@@ -27,6 +27,8 @@ def processar_eventos(jogo):
                 jogo.escolher_classe(Guerreiro)
             elif tecla == pygame.K_F2:
                 jogo.escolher_classe(Mago)
+            elif tecla == pygame.K_p:
+                jogo.usar_item()
             elif tecla == pygame.K_e:
                 jogo.demonstrar_inimigo()
             elif tecla == pygame.K_r:

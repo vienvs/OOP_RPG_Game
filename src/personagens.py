@@ -6,6 +6,7 @@ class Personagem:
     """Guarda o estado do personagem e controla sua movimentação."""
 
     def __init__(self, nome, x, y, vida=100):
+        self.inventario = []
         self.ataques = []
         self.nome = nome
         self.x = x
@@ -47,6 +48,13 @@ class Personagem:
         dano_real = min(dano, self._vida)
         self._vida -= dano_real
         return dano_real
+
+    def usar_item(self, indice=0):
+        if not isinstance(indice, int) or isinstance(indice, bool) or not 0 <= indice < len(self.inventario):
+            raise ValueError("Nenhuma poção disponível.")
+        mensagem = self.inventario[indice].usar(self)
+        self.inventario.pop(indice)
+        return mensagem
 
     def curar(self, quantidade):
         if not isinstance(quantidade, int) or isinstance(quantidade, bool) or quantidade <= 0:
