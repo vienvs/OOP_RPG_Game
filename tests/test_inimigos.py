@@ -9,3 +9,12 @@ class TestInimigo(unittest.TestCase):
         p = Guerreiro()
         Inimigo().atacar(p, sortear=Mock(return_value=1))
         self.assertEqual(p.vida, 131)
+
+    def test_orc_usa_mesmo_contrato_com_dano_diferente(self):
+        from inimigos import Orc
+        from batalha import Batalha
+        p, orc = Guerreiro(), Orc()
+        Batalha(p, orc, Mock(return_value=1)).agir(0)
+        self.assertEqual(p.vida, 125)
+        self.assertEqual(orc.vida, 73)
+        self.assertEqual(orc.simbolo, "O")

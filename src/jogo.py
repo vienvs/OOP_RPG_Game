@@ -1,5 +1,5 @@
 from batalha import Batalha
-from inimigos import Inimigo
+from inimigos import Inimigo, Orc
 from itens import PocaoVida
 from mapa import Mapa
 from personagens import Guerreiro
@@ -10,7 +10,7 @@ class Jogo:
         self.mapa = Mapa()
         self.jogador = classe()
         self.jogador.inventario = [PocaoVida() for _ in range(3)]
-        self.inimigos = [Inimigo(x=10, y=2), Inimigo(x=17, y=11)]
+        self.inimigos = [Inimigo(x=10, y=2), Orc(x=17, y=11)]
         self.batalha = None
         self.estado = "mapa"
         self.mensagens = ["Explore. Inimigos se aproximam a cada passo."]
