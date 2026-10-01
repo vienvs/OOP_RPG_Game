@@ -22,6 +22,8 @@ def processar_eventos(jogo):
                 jogo.mover(*MOVIMENTOS[tecla])
             elif tecla in (pygame.K_1, pygame.K_2, pygame.K_3):
                 jogo.atacar(tecla - pygame.K_1)
+            elif tecla == pygame.K_e:
+                jogo.demonstrar_inimigo()
             elif tecla == pygame.K_r:
                 jogo.reiniciar()
     return True
